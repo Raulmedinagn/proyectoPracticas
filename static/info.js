@@ -1,12 +1,16 @@
-alert("JSON cargado");
 var frase = "";
 
-document.querySelector('#boton-buscar').addEventListener('click',guardarFrase);
+document.querySelector('#boton-buscar').addEventListener('click',guardarFrase,false);
 
 function guardarFrase(){
-    frase = documentquerySelector('#barra-buscar').value;
-
+    frase = document.querySelector('#barra-buscar').value;
     console.log(frase);
+    mostrarFrase();
+}
+function mostrarFrase(){
+    var label = document.querySelector('#mostrar-frase');
+    label.innerHTML = '';
+    label.innerHTML = frase;
 }
 
 

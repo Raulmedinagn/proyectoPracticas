@@ -3,6 +3,7 @@
 <head>
 	<title>test</title>
 	<link rel="stylesheet" href="../static/style.css">
+
 	<!-- Bootstrap -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- Bootstrap -->
@@ -40,9 +41,9 @@
 	<!-- Barra de navegacion -->
 	<!-- Barra de busqueda -->
 
-		<form id="buscar" class="form-inline m-3 centrar">
-		      <input id="barra-buscar" class="form-control mr-sm-2" style="width: 50%" type="search" placeholder="Buscar" aria-label="Search">
-		      <button id="boton-buscar" class="btn btn-outline-info my-2 my-sm-0">
+		<form id="buscar" method="get" action="/" class="form-inline m-3 centrar">
+		      <input id="barra-buscar" name="frase" class="form-control mr-sm-2" style="width: 50%" placeholder="Buscar">
+		      <button id="boton-buscar" type="submit" class="btn btn-outline-info my-2 my-sm-0">
 		      	<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 	  				<path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
 	  				<path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
@@ -51,11 +52,10 @@
 		    </form>
 
 	<!-- Barra de busqueda -->
-	<script src="{{ url_for('static', filename='info.js') }}"></script>
+
 
 	<label id="mostrar-frase"></label>
-	<button id="boton-mostrar" class="btn btn-outline-info my-2 my-sm-0" type="submit">Mostrar frase</button>
-
+	<!--<script src="{{ url_for('static', filename='info.js') }}"></script>
 
 	<!-- Bootstrap -->
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
