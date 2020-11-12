@@ -92,12 +92,3 @@ class Api2DB:
         print(todo_texto) 
         return todo
 
-#api2DB1 = Api2DB()
-
-#api2DB1.rellenarTablaResumen()
-
-#lista_palabras = ['Andalucia', 'Jaen']
-#api2DB1.hayUnaPalabraClaveEnTabla(lista_palabras)
-
-#api2DB1.mostrarDatos()
-
