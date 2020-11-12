@@ -1,12 +1,13 @@
 import mysql.connector
 import json
+# para consultar los json
 import requests
 
 # esta clase gestiona la conexión con la base de datos
 class Api2DB:      
 
    mydb = None
-
+   #constructor de la base de datos
    def __init__(self):
         self.mydb =mysql.connector.connect(
            host = "localhost",
@@ -28,14 +29,16 @@ class Api2DB:
         # miramos en el json de la comunidad de madrid
         urlapi = "https://datos.comunidad.madrid/catalogo/dataset/1ff1f579-6a2d-4356-a244-34a2c0ad3fa4/resource/23294b86-d813-4487-905d-7d1c4f97d191/download/rutas_culturales_personas_mayores.json"
         
+        #metemos el json en una lista
         respuesta = requests.get(url = urlapi, verify=False)
         datos_json = respuesta.json()
         
+        #cogemos solo lo que hay en data, es decir todo
         lista_destinos = datos_json["data"]
         
+        
         for un_destino in lista_destinos:
-            
-            print("He encontrado algo que quizá te interese")
+            #mostramos solo el nombre del destino
             print(un_destino['destino_denominacion'])        
             
             palabras_clave = un_destino['destino_denominacion']
@@ -43,14 +46,13 @@ class Api2DB:
             
             sql = "INSERT INTO `resumen_apis` (`palabras_clave`, `url_api`, `json_completo`) VALUES (%s, %s, %s);"
             valores = (palabras_clave, urlapi, json_completo)
-            
+            #metemos los valores en la base de datos
             resultado = mycursor.execute(sql, valores)
-            
+            #los guardamos
             self.mydb.commit()
             
             print(resultado)        
             
-            print("lleva al break")
                 
    def hayUnaPalabraClaveEnTabla(self, lista_palabras_clave):
         
@@ -60,27 +62,42 @@ class Api2DB:
         
         mycursor = self.mydb.cursor()
         
-        #palabras_clave_texto = "andalucia jaen"
-        
+        #seleccionamos los destinos que coinciden con las palabras clave
         sql = "SELECT * FROM resumen_apis WHERE MATCH (palabras_clave) AGAINST ('" + palabras_clave_texto + "');"
-        #valores = (palabras_clave_texto)
-        mycursor.execute(sql)
         
-        #self.mydb.commit()        
+        mycursor.execute(sql)
+        #aquí no hace falta el commit
         
         resultados = mycursor.fetchall()
         
-        print('casi pasa por bucle filas')
         
-        for fila in resultados:
-            print('pasa por bucle filas')
-            print(fila)
-        
+        #for fila in resultados:
+         #   print()
+          #  print(fila)
+            
+        #resultados_texto = '\n'.join([str(i) for i in resultados])
 
-api2DB1 = Api2DB()
+        return resultados
+    
+   def mostrarDatos(self):
+        
+        mycursor = self.mydb.cursor()
+        sql = "SELECT * FROM resumen_apis ORDER BY id;"
+        mycursor.execute(sql)
+        
+        todo = mycursor.fetchall()
+        
+        todo_texto = '\n\n'.join([str(i) for i in todo])
+        
+        print(todo_texto) 
+        return todo
+
+#api2DB1 = Api2DB()
 
 #api2DB1.rellenarTablaResumen()
 
-lista_palabras = ['Andalucía', 'Jaén']
-api2DB1.hayUnaPalabraClaveEnTabla(lista_palabras)
+#lista_palabras = ['Andalucia', 'Jaen']
+#api2DB1.hayUnaPalabraClaveEnTabla(lista_palabras)
+
+#api2DB1.mostrarDatos()
 
