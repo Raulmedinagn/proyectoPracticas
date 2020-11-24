@@ -3,5 +3,5 @@ from abc import ABCMeta, abstractmethod
 
 class Servicio(metaclass=ABCMeta):
     @abstractmethod
-    def execute():
+    def execute(self):
         pass

@@ -27,12 +27,12 @@ class MySql(BBDD):
         self.cursor.close()
         return resultados
 
-    def insert(self, palabras_clave, urlapi, json_completo):
-        sql = "INSERT INTO `resumen_api` (`palabras_clave`, `url_api`, `json_completo`) VALUES (%s, %s, %s);"
-        valores = (palabras_clave, urlapi, json_completo)
+    def insert(self,tipo, titulo, localidad, ubicacion, descripcion, horario, json_completo, urlapi):
+        sql = "INSERT INTO `api_madrid`(`tipo`,`titulo`, `localidad`, `ubicacion`, `descripcion`, `horario`, `json_completo`, `url_api`) VALUES (%s,%s,%s,%s,%s,%s,%s,%s);"
+        valores = (tipo, titulo, localidad, ubicacion, descripcion, horario, json_completo, urlapi)
         self.cursor.execute(sql, valores)
         self.connection.commit()
-        self.cursor.close()
+        #self.cursor.close()
 
     def delete(self, valor):
         sql = "DELETE FROM `resumen_api` WHERE " + valor + ";"
@@ -46,21 +46,22 @@ class MySql(BBDD):
         self.connection.commit()
         self.cursor.close()
 
-    def execute(self, accion, parametro1, parametro2, parametro3):
+
+    def execute(self, accion, parametro1, parametro2, parametro3,parametro4, parametro5, parametro6, parametro7,parametro8):
         if accion == "execute":
             print("accion: " + accion)
-            print("parametro 2: " + parametro1)
+            print("parametro 1: " + parametro1)
             return self.executeQ(parametro1)
         if accion == "delete":
             self.delete(parametro1)
             print("Borrado exitosamente")
         if accion == "insert":
-            self.insert(parametro1, parametro2, parametro3)
+            self.insert(parametro1, parametro2, parametro3, parametro4, parametro5, parametro6, parametro7,parametro8)
             print("se ha insertado con exito")
         if accion == "update":
             self.update(parametro1, parametro2, parametro3)
             print("se ha actualizado con exito")
 
-# bd = MySql("localhost", "root", "", "buscador")
+#bd = MySql("localhost", "root", "", "buscador")
 # print(bd.execute("execute","select * from `resumen_api`;","",""))
-# bd.execute("delete", "id =  726","hola","hola")
+#bd.execute("insert", "hola","hola","hola","hola","hola","hola","hola")

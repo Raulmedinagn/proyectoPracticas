@@ -19,20 +19,20 @@
 
   <thead>
     <tr>
-      <th>ID</th>
-      <th>Palabras Clave</th>
-      <th>Url de la API </th>
-      <th>Json Completo </th>
+      <th>Titulo</th>
+        <th>Ubicación</th>
+        <th>Descripción</th>
+        <th>Horario</th>
     </tr>
   </thead>
   <tbody>
     <!-- imprimo todos los datos pasados del back-->
     {% for row in data %}
       <tr>
-        <td>{{ row.0 }}</td>
-        <td>{{ row.1 }}</td>
         <td>{{ row.2 }}</td>
-        <td>{{ row.3 }}</td>
+        <td>{{ row.4 }}</td>
+        <td>{{ row.5 }}</td>
+        <td>{{ row.6 }}</td>
       </tr>
     {% endfor %}
   </tbody>

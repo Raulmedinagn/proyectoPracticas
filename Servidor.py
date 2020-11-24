@@ -10,15 +10,17 @@ s = ServidorFlask()
 def home():
     if request.method == "POST":       
         frase = request.form["fr"]
-        palabras_importantes = s.procesarRequest("keywords",None,frase,None,None)
-        comparar = s.procesarRequest("bbdd","execute","SELECT * FROM resumen_api WHERE MATCH (palabras_clave) AGAINST ('" + palabras_importantes + "');",None,None)
+        palabras_importantes = s.procesarRequest("keywords",None,frase,None,None,None,None,None,None,None)
+        #comparar = s.procesarRequest("bbdd","execute","SELECT * FROM api_madrid WHERE MATCH (tipo,titulo) AGAINST ('" + palabras_importantes + "') ORDER BY tipo;",None,None,None,None,None,None,None)
+        comparar = s.procesarRequest("bbdd", "execute","SELECT api_madrid.*,MATCH (tipo,titulo) AGAINST ('" + palabras_importantes + "') AS relevance,MATCH (tipo) AGAINST ('" + palabras_importantes + "') AS tipo_relevance FROM api_madrid WHERE MATCH (tipo,titulo) AGAINST ('" + palabras_importantes + "') ORDER BY tipo_relevance DESC, relevance DESC;",None, None, None, None, None, None, None)
+
         return render_template("index.html", data=comparar, variable = "inline")
     else:
         return render_template("index.html",variable = "none")
 
 @app.route('/bbdd')
 def bbdd(): 
-    data = s.procesarRequest("bbdd","execute","SELECT * FROM resumen_api ORDER BY id;",None,None)
+    data = s.procesarRequest("bbdd","execute","SELECT * FROM api_madrid ORDER BY id;",None,None,None,None,None,None,None)
     return render_template("bbdd.html", data=data)
 
 
