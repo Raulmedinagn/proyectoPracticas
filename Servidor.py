@@ -10,18 +10,27 @@ s = ServidorFlask()
 def home():
     if request.method == "POST":       
         frase = request.form["fr"]
+
         palabras_importantes = s.procesarRequest("keywords",None,frase,None,None,None,None,None,None,None)
-        #comparar = s.procesarRequest("bbdd","execute","SELECT * FROM api_madrid WHERE MATCH (tipo,titulo) AGAINST ('" + palabras_importantes + "') ORDER BY tipo;",None,None,None,None,None,None,None)
-        comparar = s.procesarRequest("bbdd", "execute","SELECT api_madrid.*,MATCH (tipo,titulo) AGAINST ('" + palabras_importantes + "') AS relevance,MATCH (tipo) AGAINST ('" + palabras_importantes + "') AS tipo_relevance FROM api_madrid WHERE MATCH (tipo,titulo) AGAINST ('" + palabras_importantes + "') ORDER BY tipo_relevance DESC, relevance DESC;",None, None, None, None, None, None, None)
+        sql = "SELECT api_madrid.*,MATCH (tipo,titulo) AGAINST ('" + palabras_importantes + "') AS relevance,MATCH (tipo) AGAINST ('" + palabras_importantes + "') AS tipo_relevance FROM api_madrid WHERE MATCH (tipo,titulo) AGAINST ('" + palabras_importantes + "') ORDER BY tipo_relevance DESC, relevance DESC;"
+        comparar = s.procesarRequest("bbdd", "execute",sql,None, None, None, None, None, None, None)
 
         return render_template("index.html", data=comparar, variable = "inline")
+
     else:
         return render_template("index.html",variable = "none")
 
 @app.route('/bbdd')
-def bbdd(): 
-    data = s.procesarRequest("bbdd","execute","SELECT * FROM api_madrid ORDER BY id;",None,None,None,None,None,None,None)
+def bbdd():
+    sql = "SELECT * FROM api_madrid ORDER BY id;"
+    data = s.procesarRequest("bbdd","execute",sql,None,None,None,None,None,None,None)
     return render_template("bbdd.html", data=data)
+
+@app.route('/<id>', methods=['GET', 'POST'])
+def info(id):
+    sql = "SELECT * FROM api_madrid WHERE id = "+ id +";"
+    data = s.procesarRequest("bbdd","execute",sql,None,None,None,None,None,None,None)
+    return render_template("info.html", data=data)
 
 
 if __name__ == "__main__":
