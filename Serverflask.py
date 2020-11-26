@@ -5,13 +5,13 @@ from ApiMadrid import ApiMadrid
 
 class ServidorFlask(Server):
 
-    def procesarRequest(self, modulo, accion, parametro1, parametro2, parametro3, parametro4, parametro5, parametro6, parametro7, parametro8):
+    def procesarRequest(self, modulo, accion, parametro1, parametro2, parametro3, parametro4, parametro5, parametro6, parametro7, parametro8, parametro9, parametro10):
         if modulo == "bbdd":
             bd = MySql("localhost", "root", "", "buscador")
             if accion == "execute":
-                return bd.execute(accion, parametro1, parametro2, parametro3,parametro4, parametro5, parametro6, parametro7, parametro8)
+                return bd.execute(accion, parametro1, parametro2, parametro3,parametro4, parametro5, parametro6, parametro7, parametro8, parametro9, parametro10)
             if accion == "insert":
-                bd.insert(accion, parametro1, parametro2, parametro3,parametro4, parametro5, parametro6, parametro7, parametro8)
+                bd.insert(accion, parametro1, parametro2, parametro3,parametro4, parametro5, parametro6, parametro7, parametro8, parametro9, parametro10)
             if accion == "delete":
                 bd.delete(accion, parametro1, parametro2, parametro3)
             if accion == "update":

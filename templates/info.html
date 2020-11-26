@@ -2,28 +2,61 @@
 {% block title %}INFO{% endblock %}
 {% block content %}
 
-<table class="table table-dark p-3 m-2">
 
-	<thead>
-		<tr>
-			<th>Titulo</th>
-			<th>Localidad</th>
-			<th>Ubicación</th>
-			<th>Descripción</th>
-			<th>Horario</th>
-		</tr>
-	</thead>
-	<tbody>
-		<!-- imprimo todos los datos pasados del back-->
-		{% for row in data %}
-			<tr>
-				<td>{{ row.2 }}</td>
-				<td>{{ row.3 }}</td>
-				<td>{{ row.4 }}</td>
-				<td>{{ row.5 }}</td>
-				<td>{{ row.6 }}</td>
-			</tr>
-		{% endfor %}
-	</tbody>
+<script>
+function goBack() {
+  window.history.back();
+}
 
+
+</script>
+{% for row in data %}
+<div class="container">
+    <p><b>Título :</b> {{row.2}}</p>
+    <p><b>Localidad :</b> {{ row.3 }}</p>
+    <p><b>Ubicación :</b> {{ row.4 }}</p>
+    <p><b>Descripción :</b> {{ row.5 }}</p>
+    <p><b>Horario :</b> {{ row.6 }}</p>
+
+ <div id="map"></div>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyI96fdmI2P3t_AWhYqtskKYAqiNDCeiE&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+    <style type="text/css">
+      /* Set the size of the div element that contains the map */
+      #map {
+        height: 400px;
+        /* The height is 400 pixels */
+        width: 100%;
+        /* The width is the width of the web page */
+      }
+    </style>
+    <script>
+      // Initialize and add the map
+      function initMap() {
+        // The location of Uluru
+        const uluru = { lat: {{ row.7 }}, lng: {{ row.8 }} };
+        // The map, centered at Uluru
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 18,
+          center: uluru,
+        });
+        // The marker, positioned at Uluru
+        const marker = new google.maps.Marker({
+          position: uluru,
+          map: map,
+        });
+      }
+    </script></div>
+
+{% endfor %}
+<button class="btn btn-outline-info m-5 float-right" onclick="goBack()">
+    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor"
+         xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd"
+              d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+    </svg>
+    Volver
+</button>
 {% endblock %}

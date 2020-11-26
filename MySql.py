@@ -27,9 +27,9 @@ class MySql(BBDD):
         self.cursor.close()
         return resultados
 
-    def insert(self,tipo, titulo, localidad, ubicacion, descripcion, horario, json_completo, urlapi):
-        sql = "INSERT INTO `api_madrid`(`tipo`,`titulo`, `localidad`, `ubicacion`, `descripcion`, `horario`, `json_completo`, `url_api`) VALUES (%s,%s,%s,%s,%s,%s,%s,%s);"
-        valores = (tipo, titulo, localidad, ubicacion, descripcion, horario, json_completo, urlapi)
+    def insert(self,tipo, titulo, localidad, ubicacion, descripcion, horario, latitud, longitud, json_completo, urlapi):
+        sql = "INSERT INTO `api_madrid`( `tipo`, `titulo`, `localidad`, `ubicacion`, `descripcion`, `horario`, `latitud`, `longitud`, `json_completo`, `url_api`) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"
+        valores = (tipo, titulo, localidad, ubicacion, descripcion, horario, latitud, longitud, json_completo, urlapi)
         self.cursor.execute(sql, valores)
         self.connection.commit()
         #self.cursor.close()
@@ -47,7 +47,7 @@ class MySql(BBDD):
         self.cursor.close()
 
 
-    def execute(self, accion, parametro1, parametro2, parametro3,parametro4, parametro5, parametro6, parametro7,parametro8):
+    def execute(self, accion, parametro1, parametro2, parametro3,parametro4, parametro5, parametro6, parametro7,parametro8,parametro9,parametro10):
         if accion == "execute":
             print("accion: " + accion)
             print("parametro 1: " + parametro1)
@@ -56,7 +56,7 @@ class MySql(BBDD):
             self.delete(parametro1)
             print("Borrado exitosamente")
         if accion == "insert":
-            self.insert(parametro1, parametro2, parametro3, parametro4, parametro5, parametro6, parametro7,parametro8)
+            self.insert(parametro1, parametro2, parametro3, parametro4, parametro5, parametro6, parametro7,parametro8,parametro9,parametro10)
             print("se ha insertado con exito")
         if accion == "update":
             self.update(parametro1, parametro2, parametro3)

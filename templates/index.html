@@ -15,7 +15,9 @@
     </button>
 </form>
 <br>
-<table class="table table-dark  ml-5 p-3 centrar" style="display: {{ variable }}">
+
+<div class="container d-flex justify-content-center">
+<table class="table table-dark" style="display: {{ variable }}">
 
     <thead>
     <tr>
@@ -25,15 +27,18 @@
 
 
     </tr>
+    <br>
     </thead>
+
     <tbody>
+
     <!-- imprimo todos los datos pasados del back-->
     {% for row in data %}
     <tr>
-        <td>{{ row.2 }}</td>
-        <td>{{ row.4 }}</td>
+        <td class="w-50">{{ row.2 }}</td>
+        <td class="w-50">{{ row.4 }}</td>
         <td>
-            <a class="" href="{{ url_for('info', id = row.0) }}">
+            <a href="{{ url_for('info', id = row.0) }}">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-info-square" fill="currentColor"
                      xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd"
@@ -49,4 +54,6 @@
     </tr>
     {% endfor %}
     </tbody>
-    {% endblock %}
+</table>
+</div>
+{% endblock %}

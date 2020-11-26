@@ -41,11 +41,21 @@ class ApiMadrid(ApiQuery):
                 print(horario)
             except KeyError:
                 horario = None
+            try:
+                latitud = items["location"]["latitude"]
+                print(latitud)
+            except KeyError:
+                latitud = None
+            try:
+                longitud = items["location"]["longitude"]
+                print(longitud)
+            except KeyError:
+                longitud = None
 
-            tipo = "Monumento"
+            tipo = "Museo"
             json_completo = json.dumps(items)
 
-            bd.execute("insert",tipo,titulo,localidad,ubicacion,descripcion,horario,json_completo,urlapi)
+            bd.execute("insert",tipo,titulo,localidad,ubicacion,descripcion,horario,latitud,longitud,json_completo,urlapi)
 
 
 
@@ -54,4 +64,4 @@ class ApiMadrid(ApiQuery):
 
 
 #a = ApiMadrid()
-#a.execute("https://datos.madrid.es/egob/catalogo/300356-0-monumentos-ciudad-madrid.json")
+#a.execute("https://datos.madrid.es/egob/catalogo/201132-0-museos.json")
