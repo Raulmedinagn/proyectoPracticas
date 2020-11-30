@@ -1,10 +1,15 @@
 import json
+import xml
+
 import requests
+
+
 from ApiQuery import ApiQuery
 from MySql import MySql
 
-class ApiMadrid(ApiQuery):
-    #extraer datos de url y los inserta en la base de datos
+
+class ApiJson(ApiQuery):
+    # extraer datos de url y los inserta en la base de datos
     def extraerDatos(self, urlapi):
         bd = MySql("localhost", "root", "", "buscador")
         try:
@@ -13,7 +18,6 @@ class ApiMadrid(ApiQuery):
             lista = datos_json["@graph"]
         except Exception:
             print("Error de la url")
-
 
         for items in lista:
             try:
@@ -55,13 +59,14 @@ class ApiMadrid(ApiQuery):
             tipo = "Museo"
             json_completo = json.dumps(items)
 
-            bd.execute("insert",tipo,titulo,localidad,ubicacion,descripcion,horario,latitud,longitud,json_completo,urlapi)
-
+            bd.execute("insert", tipo, titulo, localidad, ubicacion, descripcion, horario, latitud, longitud,
+                       json_completo, urlapi)
 
 
     def execute(self, url):
         self.extraerDatos(url)
 
 
-#a = ApiMadrid()
-#a.execute("https://datos.madrid.es/egob/catalogo/201132-0-museos.json")
+#a = ApiJson()
+# a.execute("https://datos.madrid.es/egob/catalogo/201132-0-museos.json")
+#a.extraerDatosXML("https://www.esmadrid.com/opendata/alojamientos_v1_es.xml")

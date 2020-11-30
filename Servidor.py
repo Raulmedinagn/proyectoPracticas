@@ -11,9 +11,9 @@ def home():
     if request.method == "POST":       
         frase = request.form["fr"]
         if frase:
-            palabras_importantes = s.procesarRequest("keywords",None,frase,None,None,None,None,None,None,None,None,None)
+            palabras_importantes = s.procesarRequest("keywords",None,frase,None,None,None,None,None,None,None,None,None,None,None)
             sql = "SELECT api_madrid.*,MATCH (tipo,titulo) AGAINST ('" + palabras_importantes + "') AS relevance,MATCH (tipo) AGAINST ('" + palabras_importantes + "') AS tipo_relevance FROM api_madrid WHERE MATCH (tipo,titulo) AGAINST ('" + palabras_importantes + "') ORDER BY tipo_relevance DESC, relevance DESC;"
-            comparar = s.procesarRequest("bbdd", "execute",sql,None, None, None, None, None, None, None, None, None)
+            comparar = s.procesarRequest("bbdd", "execute",sql,None, None, None, None, None, None, None, None, None,None,None)
 
             return render_template("index.html", data=comparar, variable = "inline")
         else:
@@ -24,13 +24,13 @@ def home():
 @app.route('/bbdd')
 def bbdd():
     sql = "SELECT * FROM api_madrid ORDER BY id;"
-    data = s.procesarRequest("bbdd","execute",sql,None,None,None,None,None,None,None,None,None)
+    data = s.procesarRequest("bbdd","execute",sql,None,None,None,None,None,None,None,None,None,None,None)
     return render_template("bbdd.html", data=data)
 
 @app.route('/info/<id>', methods=['GET', 'POST'])
 def info(id):
     sql = "SELECT * FROM api_madrid WHERE id = "+ id +";"
-    data = s.procesarRequest("bbdd","execute",sql,None,None,None,None,None,None,None,None,None)
+    data = s.procesarRequest("bbdd","execute",sql,None,None,None,None,None,None,None,None,None,None,None)
     return render_template("info.html", data=data)
 
 

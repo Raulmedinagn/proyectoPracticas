@@ -21,11 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="8bec6aef-fe5c-43af-b985-b2c5d2b19306" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ApiMadrid.py" beforeDir="false" afterPath="$PROJECT_DIR$/ApiMadrid.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ApiMadrid.py" beforeDir="false" afterPath="$PROJECT_DIR$/ApiJson.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MySql.py" beforeDir="false" afterPath="$PROJECT_DIR$/MySql.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Serverflask.py" beforeDir="false" afterPath="$PROJECT_DIR$/Serverflask.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Servidor.py" beforeDir="false" afterPath="$PROJECT_DIR$/Servidor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/info.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/info.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,8 +59,8 @@
       <recent name="C:\Users\raulm\proyecto\static" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.ApiMadrid">
-    <configuration name="ApiMadrid" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.ApiXml">
+    <configuration name="ApiJson" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="proyecto" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -73,7 +72,28 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ApiMadrid.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\raulm\proyecto\ApiJson.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ApiXml" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="proyecto" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ApiXml.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -105,7 +125,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.ApiMadrid" />
+        <item itemvalue="Python.ApiXml" />
+        <item itemvalue="Python.ApiJson" />
         <item itemvalue="Python.MySql" />
       </list>
     </recent_temporary>
@@ -153,22 +174,38 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="260" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1606414874414" />
-    <state width="1899" height="284" key="GridCell.Tab.0.bottom" timestamp="1606420240803">
+    <state width="1899" height="316" key="GridCell.Tab.0.bottom" timestamp="1606744343021">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="284" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606420240803" />
-    <state width="1899" height="284" key="GridCell.Tab.0.center" timestamp="1606420240802">
+    <state width="1899" height="316" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606744343021" />
+    <state width="1899" height="316" key="GridCell.Tab.0.center" timestamp="1606744343021">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="284" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606420240802" />
-    <state width="1899" height="284" key="GridCell.Tab.0.left" timestamp="1606420240802">
+    <state width="1899" height="316" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606744343021" />
+    <state width="1899" height="316" key="GridCell.Tab.0.left" timestamp="1606744343021">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="284" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606420240802" />
-    <state width="1899" height="284" key="GridCell.Tab.0.right" timestamp="1606420240803">
+    <state width="1899" height="316" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606744343021" />
+    <state width="1899" height="316" key="GridCell.Tab.0.right" timestamp="1606744343021">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="284" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606420240803" />
+    <state width="1899" height="316" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606744343021" />
+    <state width="936" height="347" key="GridCell.Tab.1.bottom" timestamp="1606481751629">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="936" height="347" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606481751629" />
+    <state width="936" height="347" key="GridCell.Tab.1.center" timestamp="1606481751629">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="936" height="347" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606481751629" />
+    <state width="936" height="347" key="GridCell.Tab.1.left" timestamp="1606481751629">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="936" height="347" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606481751629" />
+    <state width="936" height="347" key="GridCell.Tab.1.right" timestamp="1606481751629">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="936" height="347" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606481751629" />
     <state x="461" y="165" key="SettingsEditor" timestamp="1606133616356">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
