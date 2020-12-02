@@ -2,6 +2,7 @@
 {% block title %}Inicio{% endblock %}
 
 {% block content %}
+
 <form method="post" class="form-inline m-3 centrar">
     <input name="fr" class="form-control mr-sm-2" style="width: 50%" placeholder="Buscar"/>
     <button type="submit" class="btn btn-outline-info my-2 my-sm-0">
@@ -21,6 +22,7 @@
 
     <thead>
     <tr>
+        <th>Tipo</th>
         <th>Titulo</th>
         <th>Ubicación</th>
         <th></th>
@@ -35,6 +37,7 @@
     <!-- imprimo todos los datos pasados del back-->
     {% for row in data %}
     <tr>
+        <td class="w-50">{{ row.1 }}</td>
         <td class="w-50">{{ row.2 }}</td>
         <td class="w-50">{{ row.4 }}</td>
         <td>
@@ -56,4 +59,5 @@
     </tbody>
 </table>
 </div>
+
 {% endblock %}

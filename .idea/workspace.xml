@@ -20,12 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8bec6aef-fe5c-43af-b985-b2c5d2b19306" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/proyecto.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/proyecto.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ApiMadrid.py" beforeDir="false" afterPath="$PROJECT_DIR$/ApiJson.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MySql.py" beforeDir="false" afterPath="$PROJECT_DIR$/MySql.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Serverflask.py" beforeDir="false" afterPath="$PROJECT_DIR$/Serverflask.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Servidor.py" beforeDir="false" afterPath="$PROJECT_DIR$/Servidor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/info.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/info.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +47,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -59,7 +55,7 @@
       <recent name="C:\Users\raulm\proyecto\static" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.ApiXml">
+  <component name="RunManager" selected="Python.pruebaTF-idf">
     <configuration name="ApiJson" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="proyecto" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -123,8 +119,30 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="pruebaTF-idf" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="proyecto" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/antiguo" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/antiguo/pruebaTF-idf" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.pruebaTF-idf" />
         <item itemvalue="Python.ApiXml" />
         <item itemvalue="Python.ApiJson" />
         <item itemvalue="Python.MySql" />
@@ -166,30 +184,30 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="561" y="126" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606133882205" />
-    <state x="1196" y="325" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1604054769259">
+    <state x="1196" y="325" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606817191524">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1196" y="325" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1604054769259" />
+    <state x="1196" y="325" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1606817191524" />
     <state x="260" y="275" key="FileChooserDialogImpl" timestamp="1606414874414">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="260" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1606414874414" />
-    <state width="1899" height="316" key="GridCell.Tab.0.bottom" timestamp="1606744343021">
+    <state width="936" height="315" key="GridCell.Tab.0.bottom" timestamp="1606823238189">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="316" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606744343021" />
-    <state width="1899" height="316" key="GridCell.Tab.0.center" timestamp="1606744343021">
+    <state width="936" height="315" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606823238189" />
+    <state width="936" height="315" key="GridCell.Tab.0.center" timestamp="1606823238189">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="316" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606744343021" />
-    <state width="1899" height="316" key="GridCell.Tab.0.left" timestamp="1606744343021">
+    <state width="936" height="315" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606823238189" />
+    <state width="936" height="315" key="GridCell.Tab.0.left" timestamp="1606823238188">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="316" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606744343021" />
-    <state width="1899" height="316" key="GridCell.Tab.0.right" timestamp="1606744343021">
+    <state width="936" height="315" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606823238188" />
+    <state width="936" height="315" key="GridCell.Tab.0.right" timestamp="1606823238189">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="316" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606744343021" />
+    <state width="936" height="315" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606823238189" />
     <state width="936" height="347" key="GridCell.Tab.1.bottom" timestamp="1606481751629">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -206,10 +224,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="936" height="347" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606481751629" />
-    <state x="461" y="165" key="SettingsEditor" timestamp="1606133616356">
+    <state x="286" y="191" key="SettingsEditor" timestamp="1606824218559">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="461" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1606133616356" />
+    <state x="286" y="191" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1606824218559" />
     <state x="803" y="305" key="refactoring.ChangeSignatureDialog" timestamp="1606135401790">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
