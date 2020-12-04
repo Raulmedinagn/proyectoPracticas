@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 from Recomendador import Recomendador
+from ExtraerKeys import ExtraerKeys
+from MySql import MySql
 import pandas as pd
 import mysql.connector
 from sklearn.feature_extraction.text import TfidfVectorizer
 from stop_words import get_stop_words
 from sklearn.metrics.pairwise import linear_kernel
 class Recomendar(Recomendador):
+
     
     mydb = None
     # sqlalchemy engine
@@ -15,7 +18,7 @@ class Recomendar(Recomendador):
         password = "",
         database = "buscador"
     )
-    query = "SELECT `titulo` FROM `api_madrid`"
+    query = "SELECT * FROM `api_madrid`"
     DF = pd.read_sql(sql=query,con=mydb)
     #print(DF)
     
@@ -50,15 +53,17 @@ class Recomendar(Recomendador):
         idx = self.indices[title]
         sim_scores = list(enumerate(cosine_sim[idx]))
         sim_scores = sorted(sim_scores,key=lambda x: x[1], reverse=True)
-        sim_scores = sim_scores[1:6]
+        #sim_scores = sim_scores[1:6]
         titulos_indices = [i[0] for i in sim_scores]
-        return self.DF['titulo'].iloc[titulos_indices]
+        lista = self.DF.iloc[titulos_indices].values.tolist()
+        return lista
+
     
     def execute(self,titulo):
         return self.get_recomendations(titulo)
     
-frase = "Rafael Hoteles Atocha"
-print("Has selecionado: "+frase+" tus recomendaciones:")
-a = Recomendar()
-print(a.execute(frase))
+#frase = "Rafael Hoteles Atocha"
+#print("Has selecionado: "+frase+" tus recomendaciones:")
+#a = Recomendar()
+#print(a.execute(frase))
     

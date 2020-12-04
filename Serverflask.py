@@ -2,6 +2,8 @@ from Server import Server
 from MySql import MySql
 from ExtraerKeys import ExtraerKeys
 from ApiJson import ApiJson
+from ApiXml import ApiXml
+from Recomendar import Recomendar
 
 class ServidorFlask(Server):
 
@@ -19,9 +21,15 @@ class ServidorFlask(Server):
         if modulo == "keywords":
             key = ExtraerKeys()
             return key.execute(parametro1)
-        if modulo == "api":
+        if modulo == "json":
             api = ApiJson()
             api.execute(parametro1)
+        if modulo == "xml":
+            api = ApiXml()
+            api.execute(parametro1)
+        if modulo == "recomendador":
+            re = Recomendar()
+            return re.execute(parametro1)
             
             
 #bd = ServidorFlask()

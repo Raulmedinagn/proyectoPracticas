@@ -6,7 +6,7 @@ app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 s = ServidorFlask()
-
+"""
 @app.route('/', methods=['GET', 'POST'])
 def home():
     error = None
@@ -52,7 +52,55 @@ def home():
             return render_template("index.html", variable="none")
     else:
         return render_template("index.html",variable = "none")
+"""
+@app.route('/', methods=['GET', 'POST'])
+def home():
+    error = None
+    if request.method == "POST":       
+        frase = request.form["fr"]
+        if frase:
+            palabras_importantes = s.procesarRequest("keywords",None,frase,None,None,None,None,None,None,None,None,None,None,None)
+            lista_keywords = palabras_importantes.split()
 
+            for keyword in lista_keywords:
+                tipos = ['hotel','hoteles','monumento','monumentos','museo','museos']
+               
+                if any(keyword in s for s in tipos):
+                    print(palabras_importantes)
+                    print(keyword)
+                    palabras_sin_key = palabras_importantes.replace(keyword,'')
+                    sql = "SELECT * FROM api_madrid WHERE MATCH (titulo,ubicacion) AGAINST ('" + palabras_sin_key + "') AND tipo LIKE '%"+keyword+"%' LIMIT 1;"
+                    comparar = s.procesarRequest("bbdd", "execute",sql,None, None, None, None, None, None, None, None, None,None,None)
+                    if comparar:
+                        nombre = ''.join(str(v) for v in comparar[0][2])
+                        data = s.procesarRequest("recomendador",None,nombre,None, None, None, None, None, None, None, None, None,None,None)
+                        return render_template("index.html", data=data, variable = "inline")
+                    else:
+                        sql = "SELECT * FROM api_madrid WHERE MATCH (tipo,titulo,ubicacion) AGAINST ('" + palabras_importantes + "') LIMIT 1;"       
+                        comparar = s.procesarRequest("bbdd", "execute",sql,None, None, None, None, None, None, None, None, None,None,None)
+                        if comparar:
+                            nombre = ''.join(str(v) for v in comparar[0][2])
+                            data = s.procesarRequest("recomendador",None,nombre,None, None, None, None, None, None, None, None, None,None,None)
+                            return render_template("index.html", data=data, variable = "inline")
+                        else:
+                            print("ruta4")
+                            error='No se encontraron resultados, prueba a buscarlo de otra forma'
+                            return render_template("index.html", variable="none",error=error)  
+                else:
+                    sql = "SELECT * FROM api_madrid WHERE MATCH (titulo,ubicacion) AGAINST ('" + palabras_importantes + "') LIMIT 1;"                    
+                    comparar = s.procesarRequest("bbdd", "execute",sql,None, None, None, None, None, None, None, None, None,None,None)
+                    if comparar:
+                        nombre = ''.join(str(v) for v in comparar[0][2])
+                        data = s.procesarRequest("recomendador",None,nombre,None, None, None, None, None, None, None, None, None,None,None)
+                        return render_template("index.html", data=data, variable = "inline")
+                    else:
+                        print("ruta5")
+                        error='No se encontraron resultados, prueba a buscarlo de otra forma'
+                        return render_template("index.html", variable="none",error=error)
+        else:
+            return render_template("index.html", variable="none")
+    else:
+        return render_template("index.html",variable = "none")
 @app.route('/bbdd')
 def bbdd():
     sql = "SELECT * FROM api_madrid ORDER BY id;"
