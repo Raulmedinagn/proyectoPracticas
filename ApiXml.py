@@ -47,7 +47,7 @@ class ApiXml(ApiQuery):
             print(titulo,tf,descripcion,web,ubicacion, localidad,latitud,longitud)
             print()
 
-            tipo = "Hotel"
+            tipo = "restaurante restaurantes"
             json_completo = None
             horario = None
 
@@ -58,4 +58,4 @@ class ApiXml(ApiQuery):
 
 
 #a = ApiXml()
-#a.execute("https://www.esmadrid.com/opendata/alojamientos_v1_es.xml")
+#a.execute("https://www.esmadrid.com/opendata/restaurantes_v1_es.xml")
