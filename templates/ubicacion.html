@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% block title %}Ubicacion{% endblock %}
+{% block content %}
+<div id="map"></div>
+<div id = "tabla"></div>
+
+
+    <script>
+         let map, infoWindow;
+
+         window.onload = function initMap(data) {
+           const map = new google.maps.Map(document.getElementById("map"), {
+             zoom: 11,
+           });
+           infoWindow = new google.maps.InfoWindow();
+
+             // Try HTML5 geolocation.
+             if (navigator.geolocation) {
+               navigator.geolocation.getCurrentPosition(
+                 (position) => {
+                   var pos = {
+                     lat: position.coords.latitude,
+                     lng: position.coords.longitude,
+                   };
+                   map.setCenter(pos);
+
+
+
+                   var marker = new google.maps.Marker({
+             			position: pos,
+             			map: map,
+           		    });
+           		    var sunCircle = {
+                strokeColor: "#c3fc49",
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: "#c3fc49",
+                fillOpacity: 0.35,
+                map: map,
+                center: pos,
+                radius: 15000 // in meters
+            	    };
+            	cityCircle = new google.maps.Circle(sunCircle);
+            	cityCircle.bindTo('center', marker, 'position');
+            	var p1 = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+              var myTable= "<table class='table table-dark'><thead><tr><th>Titulo</th><th>Ubicación</th><th></th></tr><br></thead><tbody>";
+
+              for(x of test_func({{ data|safe }})) {
+           			pos = {
+                     	lat: parseFloat(x[9]),
+                     	lng: parseFloat(x[10]),
+                   	};
+
+                    var p2 = new google.maps.LatLng(parseFloat(x[9]),parseFloat(x[10]));
+
+            		      var isInRadius = google.maps.geometry.spherical.computeDistanceBetween(p1, p2) <= sunCircle.radius;
+
+
+               		if(isInRadius == true){
+                    //console.log(x[2])
+                    if((x[2]!=null)&&(x[4]!=null)){
+                      nombre=x[2];
+                      ubicacion = x[4];
+
+                       myTable+="<tr><td class='w-50'>" + nombre + "</td>";
+                       myTable+="<td class='w-50'>" + ubicacion + "</td>";
+                       id = x[0];
+                       n = id.toString();
+                       n = n.trim()
+                       console.log(typeof(id)+typeof(n));
+                       myTable+="<td><a href='{{ url_for('info', id ="+ n +") }}'>";
+                       myTable+="<svg width='1em' height='1em' viewBox='0 0 16 16' class='bi bi-info-square' fill='currentColor'xmlns='http://www.w3.org/2000/svg'>";
+                       myTable+="<path fill-rule='evenodd'd='M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z'/>";
+                       myTable+="<path fill-rule='evenodd'd='M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z'/>";
+                       myTable+="<path d='M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z'/>";
+                       myTable+="<circle cx='8' cy='4.5' r='1'/></svg></a></td></tr>";
+                    }
+
+
+               			marker = new google.maps.Marker({
+             				position: p2,
+             				map: map,
+           				  });
+               		}
+
+               	}
+                myTable+="</tbody></table>";
+
+                document.getElementById('tabla').innerHTML = myTable;
+                 },
+                 () => {
+                   handleLocationError(true, infoWindow, map.getCenter());
+                 }
+               );
+             } else {
+               // Browser doesn't support Geolocation
+               handleLocationError(false, infoWindow, map.getCenter());
+             }
+         }
+
+         function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+           infoWindow.setPosition(pos);
+           infoWindow.setContent(
+             browserHasGeolocation
+               ? "Error: The Geolocation service failed."
+               : "Error: Your browser doesn't support geolocation."
+           );
+           infoWindow.open(map);
+         }
+         function test_func(data) {
+              return data
+         }
+         function urlfor(id1){
+           return location.href = Flask.url_for('info', id = id1);
+         }
+    </script>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyI96fdmI2P3t_AWhYqtskKYAqiNDCeiE&libraries=geometry&v=weekly" defer></script>
+    <style>
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+    </style>
+{%endblock%}

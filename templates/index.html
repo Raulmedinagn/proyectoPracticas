@@ -44,7 +44,6 @@ $(document).ready(function(){
 </div>
 <div class="container d-flex justify-content-center">
 <table class="table table-dark" style="display: {{ variable }}">
-
     <thead>
     <tr>
         <th>Tipo</th>
@@ -59,8 +58,15 @@ $(document).ready(function(){
 
     <tbody>
 
+
+       
+
+
+
     <!-- imprimo todos los datos pasados del back-->
+    {% set cnt = [0] %}
     {% for row in data %}
+    {% if cnt.append(cnt.pop() + 1) %}{% endif %}
     <tr>
         <td class="w-50">{{ row.1 }}</td>
         <td class="w-50">{{ row.2 }}</td>
@@ -80,9 +86,15 @@ $(document).ready(function(){
         </td>
 
     </tr>
+
     {% endfor %}
     </tbody>
+
 </table>
 </div>
+<div class="d-flex p-2 justify-content-center">
+    <p class="text-right"style="display: {{ variable }}">Resultados encontrados: {{ cnt[0] }}</p>
+</div>
+
 
 {% endblock %}

@@ -2,6 +2,8 @@ from flask import Flask, redirect, url_for, render_template, request, flash
 
 from Serverflask import ServidorFlask
 
+import json
+
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
@@ -10,7 +12,7 @@ s = ServidorFlask()
 @app.route('/', methods=['GET', 'POST'])
 def home():
 
-    if request.method == "POST":       
+    if request.method == "POST":
         frase = request.form["fr"]
         if frase:
             palabras_importantes = s.procesarRequest("keywords",None,frase,None,None,None,None,None,None,None,None,None,None,None)
@@ -18,7 +20,7 @@ def home():
 
             for keyword in lista_keywords:
                 tipos = ['hotel','hoteles','monumento','monumentos','museo','museos','restaurante','restaurantes']
-               
+
                 if any(keyword in s for s in tipos):
                     print(palabras_importantes)
                     print(keyword)
@@ -29,7 +31,7 @@ def home():
                         print("ruta1")
                         return render_template("index.html", data=comparar, variable = "inline")
                     else:
-                        sql = "SELECT api_madrid.*,MATCH (titulo) AGAINST ('" + palabras_importantes + "') AS relevance FROM api_madrid WHERE MATCH (tipo,titulo,ubicacion) AGAINST ('" + palabras_importantes + "') ORDER BY relevance DESC;"       
+                        sql = "SELECT api_madrid.*,MATCH (titulo) AGAINST ('" + palabras_importantes + "') AS relevance FROM api_madrid WHERE MATCH (tipo,titulo,ubicacion) AGAINST ('" + palabras_importantes + "') ORDER BY relevance DESC;"
                         comparar = s.procesarRequest("bbdd", "execute",sql,None, None, None, None, None, None, None, None, None,None,None)
                         if comparar:
                             print("ruta3")
@@ -37,9 +39,9 @@ def home():
                         else:
                             print("ruta4")
                             flash('No se encontraron resultados, prueba a buscarlo de otra forma')
-                            return render_template("index.html", variable="none")  
+                            return render_template("index.html", variable="none")
                 else:
-                    sql = "SELECT api_madrid.*,MATCH (titulo) AGAINST ('" + palabras_importantes + "') AS relevance FROM api_madrid WHERE MATCH (titulo,ubicacion) AGAINST ('" + palabras_importantes + "') ORDER BY relevance DESC;"                    
+                    sql = "SELECT api_madrid.*,MATCH (titulo) AGAINST ('" + palabras_importantes + "') AS relevance FROM api_madrid WHERE MATCH (titulo,ubicacion) AGAINST ('" + palabras_importantes + "') ORDER BY relevance DESC;"
                     comparar = s.procesarRequest("bbdd", "execute",sql,None, None, None, None, None, None, None, None, None,None,None)
                     if comparar:
                         print("ruta2")
@@ -56,7 +58,7 @@ def home():
 @app.route('/', methods=['GET', 'POST'])
 def home():
     error = None
-    if request.method == "POST":       
+    if request.method == "POST":
         frase = request.form["fr"]
         if frase:
             palabras_importantes = s.procesarRequest("keywords",None,frase,None,None,None,None,None,None,None,None,None,None,None)
@@ -71,22 +73,22 @@ def home():
                     sql = "SELECT api_madrid.*,MATCH (titulo) AGAINST ('" + palabras_importantes + "') AS relevance FROM api_madrid WHERE MATCH (titulo,ubicacion) AGAINST ('" + palabras_sin_key + "') AND tipo LIKE '%"+keyword+"%' ORDER BY relevance DESC LIMIT 1;"
                     comparar = s.procesarRequest("bbdd", "execute",sql,None, None, None, None, None, None, None, None, None,None,None)
                     if comparar:
-                        nombre = ''.join(str(v) for v in comparar[0][2])                        
+                        nombre = ''.join(str(v) for v in comparar[0][2])
                         datos = s.procesarRequest("recomendador",None,nombre,None, None, None, None, None, None, None, None, None,None,None)
                         return render_template("index.html", data=datos, variable = "inline")
                     else:
-                        sql = "SELECT api_madrid.*,MATCH (titulo) AGAINST ('" + palabras_importantes + "') AS relevance FROM api_madrid WHERE MATCH (tipo,titulo,ubicacion) AGAINST ('" + palabras_importantes + "') ORDER BY relevance DESC LIMIT 1;"       
+                        sql = "SELECT api_madrid.*,MATCH (titulo) AGAINST ('" + palabras_importantes + "') AS relevance FROM api_madrid WHERE MATCH (tipo,titulo,ubicacion) AGAINST ('" + palabras_importantes + "') ORDER BY relevance DESC LIMIT 1;"
                         comparar = s.procesarRequest("bbdd", "execute",sql,None, None, None, None, None, None, None, None, None,None,None)
                         if comparar:
-                            nombre = ''.join(str(v) for v in comparar[0][2])                      
+                            nombre = ''.join(str(v) for v in comparar[0][2])
                             datos = s.procesarRequest("recomendador",None,nombre,None, None, None, None, None, None, None, None, None,None,None)
                             return render_template("index.html", data=datos, variable = "inline")
                         else:
                             print("ruta4")
                             flash('No se encontraron resultados, prueba a buscarlo de otra forma')
-                            return render_template("index.html", variable="none")  
+                            return render_template("index.html", variable="none")
                 else:
-                    sql = "SELECT api_madrid.*,MATCH (titulo) AGAINST ('" + palabras_importantes + "') AS relevance FROM api_madrid WHERE MATCH (titulo,ubicacion) AGAINST ('" + palabras_importantes + "') ORDER BY relevance DESC LIMIT 1;"                    
+                    sql = "SELECT api_madrid.*,MATCH (titulo) AGAINST ('" + palabras_importantes + "') AS relevance FROM api_madrid WHERE MATCH (titulo,ubicacion) AGAINST ('" + palabras_importantes + "') ORDER BY relevance DESC LIMIT 1;"
                     comparar = s.procesarRequest("bbdd", "execute",sql,None, None, None, None, None, None, None, None, None,None,None)
                     if comparar:
                         nombre = ''.join(str(v) for v in comparar[0][2])
@@ -109,13 +111,19 @@ def bbdd():
 
 @app.route('/info/<id>', methods=['GET', 'POST'])
 def info(id):
+    id = id.strip()
     sql = "SELECT * FROM api_madrid WHERE id = "+ id +";"
     data = s.procesarRequest("bbdd","execute",sql,None,None,None,None,None,None,None,None,None,None,None)
-    nombre = ''.join(str(v) for v in data[0][2])  
+    nombre = ''.join(str(v) for v in data[0][2])
     datos = s.procesarRequest("recomendador",None,nombre,None, None, None, None, None, None, None, None, None,None,None)
-                        
+
     return render_template("info.html", data=data, data2 = datos[1:5])
 
+@app.route('/ubicacion')
+def ubicacion():
+    sql = "SELECT * FROM api_madrid ORDER BY id;"
+    data = s.procesarRequest("bbdd","execute",sql,None,None,None,None,None,None,None,None,None,None,None)
+    return render_template('ubicacion.html',data = json.dumps(data))
 
 if __name__ == "__main__":
     app.run(debug=True)

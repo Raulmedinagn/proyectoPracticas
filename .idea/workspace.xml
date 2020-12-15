@@ -21,7 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="8bec6aef-fe5c-43af-b985-b2c5d2b19306" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Serverflask.py" beforeDir="false" afterPath="$PROJECT_DIR$/Serverflask.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Servidor.py" beforeDir="false" afterPath="$PROJECT_DIR$/Servidor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,10 +182,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1066" y="202" key="#Inspections/0.0.1920.1040@0.0.1920.1040" timestamp="1604061121919" />
-    <state x="561" y="126" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606133882205">
+    <state x="561" y="126" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607971747760">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="561" y="126" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606133882205" />
+    <state x="561" y="126" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607971747760" />
     <state x="1196" y="325" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606817191524">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
