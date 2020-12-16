@@ -111,7 +111,6 @@ def bbdd():
 
 @app.route('/info/<id>', methods=['GET', 'POST'])
 def info(id):
-    id = id.strip()
     sql = "SELECT * FROM api_madrid WHERE id = "+ id +";"
     data = s.procesarRequest("bbdd","execute",sql,None,None,None,None,None,None,None,None,None,None,None)
     nombre = ''.join(str(v) for v in data[0][2])
@@ -119,11 +118,30 @@ def info(id):
 
     return render_template("info.html", data=data, data2 = datos[1:5])
 
-@app.route('/ubicacion')
+@app.route('/ubicacion', methods=['GET', 'POST'])
 def ubicacion():
-    sql = "SELECT * FROM api_madrid ORDER BY id;"
+    sql = "SELECT * FROM api_madrid;"
     data = s.procesarRequest("bbdd","execute",sql,None,None,None,None,None,None,None,None,None,None,None)
-    return render_template('ubicacion.html',data = json.dumps(data))
+    if request.method == "POST":
+        distancia = request.form["distancia"]
+        tipo = request.form["tipo"]
+        if distancia == None:
+            distancia = 10000
+            if tipo != "todos":
+                sql = "SELECT * FROM api_madrid WHERE tipo like '%"+tipo+"%';"
+                data = s.procesarRequest("bbdd","execute",sql,None,None,None,None,None,None,None,None,None,None,None)
+                return render_template('ubicacion.html',data = json.dumps(data), metros = distancia )
+            else:
+                return render_template('ubicacion.html',data = json.dumps(data), metros = distancia )
+        else:
+            if tipo != "todos":
+                sql = "SELECT * FROM api_madrid WHERE tipo like '%"+tipo+"%';"
+                data = s.procesarRequest("bbdd","execute",sql,None,None,None,None,None,None,None,None,None,None,None)
+                return render_template('ubicacion.html',data = json.dumps(data), metros = distancia )
+            else:
+                return render_template('ubicacion.html',data = json.dumps(data), metros = distancia )
+    else:
+        return render_template('ubicacion.html',data = json.dumps(data), metros = 10000 )
 
 if __name__ == "__main__":
     app.run(debug=True)
