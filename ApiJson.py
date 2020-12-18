@@ -56,10 +56,12 @@ class ApiJson(ApiQuery):
             except KeyError:
                 longitud = None
 
-            tipo = "Museo"
+            web = None
+            tf = None
+            tipo = "piscina piscinas"
             json_completo = json.dumps(items)
 
-            bd.execute("insert", tipo, titulo, localidad, ubicacion, descripcion, horario, latitud, longitud,
+            bd.execute("insert", tipo, titulo, localidad, ubicacion, descripcion, horario,web,tf, latitud, longitud,
                        json_completo, urlapi)
 
 
@@ -68,5 +70,4 @@ class ApiJson(ApiQuery):
 
 
 #a = ApiJson()
-# a.execute("https://datos.madrid.es/egob/catalogo/201132-0-museos.json")
-#a.extraerDatosXML("https://www.esmadrid.com/opendata/alojamientos_v1_es.xml")
+#a.execute("https://datos.madrid.es/egob/catalogo/210227-0-piscinas-publicas.json")

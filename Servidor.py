@@ -19,7 +19,7 @@ def home():
             lista_keywords = palabras_importantes.split()
 
             for keyword in lista_keywords:
-                tipos = ['hotel','hoteles','monumento','monumentos','museo','museos','restaurante','restaurantes']
+                tipos = ['hotel','hoteles','monumento','monumentos','museo','museos','restaurante','restaurantes','parking', 'parkings', 'aparcamiento', 'aparcamientos','piscina','piscinas']
 
                 if any(keyword in s for s in tipos):
                     print(palabras_importantes)
