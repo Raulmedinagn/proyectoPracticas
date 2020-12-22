@@ -143,5 +143,20 @@ def ubicacion():
     else:
         return render_template('ubicacion.html',data = json.dumps(data), metros = 10000 )
 
+@app.route('/nuevaApi', methods=['GET', 'POST'])
+def nuevaApi():
+    if request.method == "POST":
+        url = request.form["url"]
+        tipo = request.form["tipo"]
+        if url and tipo != None:
+            formato = request.form["formato"]
+            if formato == "JSON":
+                s.procesarRequest("json",None,url,tipo,None,None,None,None,None,None,None,None,None,None)
+                return render_template("añadirApi.html")
+            if formato == "XML":
+                s.procesarRequest("xml",None,url,tipo,None,None,None,None,None,None,None,None,None,None)
+                return render_template("añadirApi.html")
+    else:
+        return render_template("añadirApi.html")
 if __name__ == "__main__":
     app.run(debug=True)

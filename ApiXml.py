@@ -6,7 +6,7 @@ import xml.etree.ElementTree as ET
 import re
 import html
 class ApiXml(ApiQuery):
-    def extraerDatos(self, url):
+    def extraerDatos(self, url, tipo):
         bd = MySql("localhost", "root", "", "buscador")
 
         req = urllib.request.urlopen(url)
@@ -47,14 +47,13 @@ class ApiXml(ApiQuery):
             print(titulo,tf,descripcion,web,ubicacion, localidad,latitud,longitud)
             print()
 
-            tipo = "restaurante restaurantes"
             json_completo = None
             horario = None
 
-            #bd.execute("insert", tipo, titulo, localidad, ubicacion, descripcion, horario, web, tf, latitud, longitud, json_completo, url)
+            bd.execute("insert", tipo, titulo, localidad, ubicacion, descripcion, horario, web, tf, latitud, longitud, json_completo, url)
 
-    def execute(self, url):
-        self.extraerDatos(url)
+    def execute(self, url, tipo):
+        self.extraerDatos(url, tipo)
 
 
 #a = ApiXml()

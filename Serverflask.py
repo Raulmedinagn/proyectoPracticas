@@ -23,10 +23,10 @@ class ServidorFlask(Server):
             return key.execute(parametro1)
         if modulo == "json":
             api = ApiJson()
-            api.execute(parametro1)
+            api.execute(parametro1,parametro2)
         if modulo == "xml":
             api = ApiXml()
-            api.execute(parametro1)
+            api.execute(parametro1,parametro2)
         if modulo == "recomendador":
             re = Recomendar()
             return re.execute(parametro1)
@@ -34,4 +34,6 @@ class ServidorFlask(Server):
             
 #bd = ServidorFlask()
 #frase = bd.procesarRequest("keywords",None,"Hoteles cerca de madrid",None,None)
-#bd.procesarRequest("bbdd","execute","SELECT * FROM resumen_api WHERE MATCH (palabras_clave) AGAINST ('" + frase + "');",None,None)
+#url = "https://datos.madrid.es/egob/catalogo/202625-0-aparcamientos-publicos.json"
+#tipo = "hola"
+#bd.procesarRequest("json",None,url,tipo,None,None,None,None,None,None,None,None,None,None)

@@ -10,7 +10,7 @@ from MySql import MySql
 
 class ApiJson(ApiQuery):
     # extraer datos de url y los inserta en la base de datos
-    def extraerDatos(self, urlapi):
+    def extraerDatos(self, urlapi, tipo):
         bd = MySql("localhost", "root", "", "buscador")
         try:
             respuesta = requests.get(urlapi)
@@ -58,16 +58,15 @@ class ApiJson(ApiQuery):
 
             web = None
             tf = None
-            tipo = "piscina piscinas"
             json_completo = json.dumps(items)
 
             bd.execute("insert", tipo, titulo, localidad, ubicacion, descripcion, horario,web,tf, latitud, longitud,
                        json_completo, urlapi)
 
 
-    def execute(self, url):
-        self.extraerDatos(url)
+    def execute(self, url, tipo):
+        self.extraerDatos(url, tipo)
 
 
 #a = ApiJson()
-#a.execute("https://datos.madrid.es/egob/catalogo/210227-0-piscinas-publicas.json")
+#a.execute("https://datos.madrid.es/egob/catalogo/210227-0-piscinas-publicas.json","hola")
