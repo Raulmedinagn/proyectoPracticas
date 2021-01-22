@@ -4,6 +4,8 @@ from ExtraerKeys import ExtraerKeys
 from ApiJson import ApiJson
 from ApiXml import ApiXml
 from Recomendar import Recomendar
+from bm25 import BM
+from Calculadora import Calculadora
 
 class ServidorFlask(Server):
 
@@ -30,10 +32,14 @@ class ServidorFlask(Server):
         if modulo == "recomendador":
             re = Recomendar()
             return re.execute(parametro1)
-            
+        if modulo == "recomendadorBM":
+            re = BM()
+            return re.execute(parametro1, parametro2)
+         
             
 #bd = ServidorFlask()
 #frase = bd.procesarRequest("keywords",None,"Hoteles cerca de madrid",None,None)
 #url = "https://datos.madrid.es/egob/catalogo/202625-0-aparcamientos-publicos.json"
 #tipo = "hola"
-#bd.procesarRequest("json",None,url,tipo,None,None,None,None,None,None,None,None,None,None)
+#a = bd.procesarRequest("calculadora","precision",50,100,None,None,None,None,None,None,None,None,None,None)
+#print(a)

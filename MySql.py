@@ -63,5 +63,5 @@ class MySql(BBDD):
             print("se ha actualizado con exito")
 
 #bd = MySql("localhost", "root", "", "buscador")
-# print(bd.execute("execute","select * from `resumen_api`;","",""))
+#print(bd.executeQ("select titulo from `api_madrid`;"))
 #bd.execute("insert", "hola","hola","hola","hola","hola","hola","hola")
