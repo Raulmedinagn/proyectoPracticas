@@ -1,6 +1,8 @@
 # Proyecto practicas
 Este proyecto fueron mis prácticas en el grado superior de **Desarrollo de Aplicaciones Multiplataformas**
 
+El proyecto de fin de grado es Linux Easy Admin
+
 ## Información
 Es una **aplicacion web** que permite la busqueda de momumentos, museos, restaurantes, parkings, etc en la comunudad de madrid
 
